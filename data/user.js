@@ -1,0 +1,22 @@
+module.exports = [
+  {"id":1,"first_name":"Griz","last_name":"Edelston","company":1},
+  {"id":2,"first_name":"Kienan","last_name":"Goning","company":2},
+  {"id":3,"first_name":"Rosalinde","last_name":"Bigmore","company":1},
+  {"id":4,"first_name":"Cassandry","last_name":"Housecraft","company":1},
+  {"id":5,"first_name":"Giffy","last_name":"Degoix","company":1},
+  {"id":6,"first_name":"Charmane","last_name":"Navarro","company":1},
+  {"id":7,"first_name":"Brennan","last_name":"Pond-Jones","company":3},
+  {"id":8,"first_name":"Nealy","last_name":"Askem","company":2},
+  {"id":9,"first_name":"Reginald","last_name":"Schubart","company":2},
+  {"id":10,"first_name":"Brook","last_name":"Luke","company":2},
+  {"id":11,"first_name":"Amandy","last_name":"Ingilson","company":3},
+  {"id":12,"first_name":"Daphne","last_name":"Carbry","company":1},
+  {"id":13,"first_name":"Nikolas","last_name":"Henryson","company":2},
+  {"id":14,"first_name":"Lauralee","last_name":"O'Hara","company":1},
+  {"id":15,"first_name":"Myrtia","last_name":"Langham","company":3},
+  {"id":16,"first_name":"Georas","last_name":"Kemmey","company":2},
+  {"id":17,"first_name":"Henderson","last_name":"Bennington","company":2},
+  {"id":18,"first_name":"Marcy","last_name":"Geater","company":2},
+  {"id":19,"first_name":"Dora","last_name":"Pelfer","company":1},
+  {"id":20,"first_name":"Barney","last_name":"Gotmann","company":1}
+];
