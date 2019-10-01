@@ -32,7 +32,7 @@ const getProjectById = (req, res) => {
 };
 
 const postProject = (req, res) => {
-  const { user: currentUser } = req.context;
+  const currentUser = USERS.find(user => user.id === req.auth.userId);
   const { name } = req.body;
 
   if (!name) {
