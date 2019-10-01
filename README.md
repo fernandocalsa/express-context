@@ -49,15 +49,29 @@ Every request to this API requires a `Authorization` header. This is a simple `b
 {"userId":1}
 ```
 
+Some examples of authorization headers:
+- User 1: `eyJ1c2VySWQiOjF9`
+- User 2: `eyJ1c2VySWQiOjJ9`
+
 ## Endpoints
 
 ### Get /users
 
 It returns all the users from the current user company.
+```
+curl --request GET \
+  --url https://express-context.herokuapp.com/users \
+  --header 'authorization: eyJ1c2VySWQiOjF9'
+```
 
 ### Get /projects
 
 It returns all the projects from the current user company.
+```
+curl --request GET \
+  --url https://express-context.herokuapp.com/projects \
+  --header 'authorization: eyJ1c2VySWQiOjF9'
+```
 
 ### Post /projects
 
@@ -65,8 +79,24 @@ It creates a new project in the current user company and returns it.
 
 > Note: It doesn´t actually create the project as we are not connected to a database.
 
+```
+curl --request POST \
+  --url https://express-context.herokuapp.com/projects \
+  --header 'authorization: eyJ1c2VySWQiOjF9' \
+  --header 'content-type: application/json' \
+  --data '{
+	"name": "new project"
+}'
+```
+
 ### Get /projects/:id
 
 It returns a project by the id. It only returns the project if it is in the current user company.
 
 If not found returns a 404.
+
+```
+curl --request GET \
+  --url https://express-context.herokuapp.com/projects/1 \
+  --header 'authorization: eyJ1c2VySWQiOjF9'
+```
