@@ -1,6 +1,7 @@
 const express = require('express');
 const authorization = require('./middlewares/authorization');
 const addUserContext = require('./middlewares/addUserContext');
+const usersController = require('./controllers/users.controller');
 const port = process.env.PORT | 3030;
 
 const app = express();
@@ -13,6 +14,10 @@ app.get('/', (req, res) => {
     msg: 'Api up and running!'
   });
 });
+
+app
+  .route("/users")
+  .get(usersController.getUsers)
 
 app.use((err, req, res, next) => {
   if(err) {
