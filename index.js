@@ -7,6 +7,7 @@ const port = process.env.PORT | 3030;
 
 const app = express();
 
+app.use(express.json());
 app.use(authorization);
 app.use(addUserContext);
 
@@ -17,7 +18,10 @@ app.get('/', (req, res) => {
 });
 
 app.get("/users", usersController.getUsers);
-app.get("/projects", projectsController.getProjects);
+app
+  .route("/projects")
+  .get(projectsController.getProjects)
+  .post(projectsController.postProject);
 app.get("/projects/:id", projectsController.getProjectById);
 
 app.use((err, req, res, next) => {

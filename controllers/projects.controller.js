@@ -28,9 +28,32 @@ const getProjectById = (req, res) => {
   res.json({
     project
   })
-}
+};
+
+const postProject = (req, res) => {
+  const { user: currentUser } = req.context;
+  const { name } = req.body;
+
+  if (!name) {
+    return res.status(400).json({
+      err: "name is required"
+    })
+  }
+
+  const project = {
+    name,
+    createdBy: currentUser.id,
+    company: currentUser.company
+  };
+  // TODO: save the project
+
+  res.json({
+    project
+  });
+};
 
 module.exports = {
   getProjects,
   getProjectById,
+  postProject,
 };
