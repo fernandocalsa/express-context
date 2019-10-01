@@ -3,7 +3,7 @@ const authorization = require('./middlewares/authorization');
 const addUserContext = require('./middlewares/addUserContext');
 const usersController = require('./controllers/users.controller');
 const projectsController = require("./controllers/projects.controller");
-const port = process.env.PORT | 3030;
+const port = process.env.PORT || 3030;
 
 const app = express();
 
