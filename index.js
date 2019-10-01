@@ -1,6 +1,5 @@
 const express = require('express');
 const authorization = require('./middlewares/authorization');
-const addUserContext = require('./middlewares/addUserContext');
 const usersController = require('./controllers/users.controller');
 const projectsController = require("./controllers/projects.controller");
 const port = process.env.PORT | 3030;
@@ -9,7 +8,6 @@ const app = express();
 
 app.use(express.json());
 app.use(authorization);
-app.use(addUserContext);
 
 app.get('/', (req, res) => {
   res.json({

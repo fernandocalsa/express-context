@@ -1,7 +1,8 @@
 const PROJECTS = require("../data/project");
+const USERS = require('../data/user');
 
 const getProjects = (req, res) => {
-  const { user: currentUser } = req.context;
+  const currentUser = USERS.find(user => user.id === req.auth.userId);
 
   const projects = PROJECTS.filter(project => project.company === currentUser.company);
 
@@ -11,7 +12,7 @@ const getProjects = (req, res) => {
 };
 
 const getProjectById = (req, res) => {
-  const { user: currentUser } = req.context;
+  const currentUser = USERS.find(user => user.id === req.auth.userId);
   const { id: projectId } = req.params;
 
   const project = PROJECTS.find(project => (

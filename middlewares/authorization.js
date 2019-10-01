@@ -13,9 +13,8 @@ module.exports = async (req, res, next) => {
       msg: 'Error parsing authorization'
     });
   }
-  if(!req.context) {
-    req.context = {};
-  }
-  req.context.userId = userId;
+  req.auth = {
+    userId
+  };
   next();
 };
