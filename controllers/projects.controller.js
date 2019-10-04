@@ -1,9 +1,9 @@
-const PROJECTS = require("../data/project");
+const Project = require("../models/project");
 
 const getProjects = (req, res) => {
   const { user: currentUser } = req.context;
 
-  const projects = PROJECTS.filter(project => project.company === currentUser.company);
+  const projects = Project.find(currentUser.company);
 
   res.json({
     projects
@@ -14,10 +14,7 @@ const getProjectById = (req, res) => {
   const { user: currentUser } = req.context;
   const { id: projectId } = req.params;
 
-  const project = PROJECTS.find(project => (
-    project.id === parseInt(projectId) &&
-    project.company === currentUser.company
-  ));
+  const project = Project.findById(projectId, currentUser.company);
 
   if (!project) {
     return res.status(401).json({
@@ -40,12 +37,13 @@ const postProject = (req, res) => {
     })
   }
 
-  const project = {
+  const project = new Project(
+    null,
     name,
-    createdBy: currentUser.id,
-    company: currentUser.company
-  };
-  // TODO: save the project
+    currentUser.id,
+    currentUser.company
+  );
+  project.save();
 
   res.json({
     project

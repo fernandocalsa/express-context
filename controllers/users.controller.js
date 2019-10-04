@@ -1,9 +1,9 @@
-const USERS = require('../data/user');
+const User = require("../models/user");
 
 const getUsers = (req, res) => {
   const { user: currentUser } = req.context;
   
-  const users = USERS.filter(user => user.company === currentUser.company);
+  const users = User.find(currentUser.company);
   res.json({
     users
   })
