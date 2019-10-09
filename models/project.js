@@ -1,24 +1,27 @@
 const PROJECTS = require("../data/project");
 
 class Project {
-  constructor(id, name, createdBy, company) {
+  constructor({id, name, createdBy, company}) {
     this.id = id;
     this.name = name;
     this.createdBy = createdBy;
     this.company = company;
   };
 
-  static find(company) {
+  static find() {
+    const companyId = this._context.user.company;
     return PROJECTS
-      .filter(project => project.company === company)
-      .map(({id, name, createdBy, company}) => new Project(id, name, createdBy, company));
+      .filter(project => project.company === companyId)
+      .map(projectData => new Project(projectData));
   }
 
-  static findById(id, company) {
-    return PROJECTS.find(project => (
+  static findById(id) {
+    const companyId = this._context.user.company;
+    const projectData = PROJECTS.find(project => (
       project.id === parseInt(id) &&
-      project.company === company
+      project.company === companyId
     ));
+    return new Project(projectData);
   }
 
   save() {
@@ -27,4 +30,6 @@ class Project {
   }
 };
 
-module.exports = Project;
+module.exports = () => {
+  return Project;
+};

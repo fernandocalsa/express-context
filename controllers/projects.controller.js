@@ -1,9 +1,7 @@
-const Project = require("../models/project");
-
 const getProjects = (req, res) => {
-  const { user: currentUser } = req.context;
+  const { Project } = req.context.models;
 
-  const projects = Project.find(currentUser.company);
+  const projects = Project.find();
 
   res.json({
     projects
@@ -11,10 +9,10 @@ const getProjects = (req, res) => {
 };
 
 const getProjectById = (req, res) => {
-  const { user: currentUser } = req.context;
   const { id: projectId } = req.params;
+  const { Project } = req.context.models;
 
-  const project = Project.findById(projectId, currentUser.company);
+  const project = Project.findById(projectId);
 
   if (!project) {
     return res.status(401).json({
@@ -28,8 +26,8 @@ const getProjectById = (req, res) => {
 };
 
 const postProject = (req, res) => {
-  const { user: currentUser } = req.context;
   const { name } = req.body;
+  const { Project } = req.context.models;
 
   if (!name) {
     return res.status(400).json({
@@ -37,12 +35,7 @@ const postProject = (req, res) => {
     })
   }
 
-  const project = new Project(
-    null,
-    name,
-    currentUser.id,
-    currentUser.company
-  );
+  const project = new Project({name});
   project.save();
 
   res.json({

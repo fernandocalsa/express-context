@@ -1,6 +1,7 @@
 const express = require('express');
 const authorization = require('./middlewares/authorization');
 const addUserContext = require('./middlewares/addUserContext');
+const injectContext = require("./middlewares/injectContext");
 const router = require("./router");
 const port = process.env.PORT || 3030;
 
@@ -9,6 +10,7 @@ const app = express();
 app.use(express.json());
 app.use(authorization);
 app.use(addUserContext);
+app.use(injectContext);
 
 app.use("/", router)
 
