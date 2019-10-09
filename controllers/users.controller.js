@@ -1,9 +1,7 @@
-const User = require("../models/user");
-
 const getUsers = (req, res) => {
-  const { user: currentUser } = req.context;
+  const { User } = req.context.models;
   
-  const users = User.find(currentUser.company);
+  const users = User.find();
   res.json({
     users
   })

@@ -25,7 +25,10 @@ class Project {
   }
 
   save() {
+    const currentUser = this._context.user;
     this.id = new Date().getTime();
+    this.company = currentUser.companyId;
+    this.createdBy = currentUser.id;
     console.log("project saved");
   }
 };
