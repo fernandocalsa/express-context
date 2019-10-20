@@ -1,6 +1,6 @@
 const USERS = require('../data/user');
 
-class User {
+module.exports = () => class User {
   constructor({id, firstName, lastName, company}) {
     this.id = id;
     this.firstName = firstName;
@@ -9,12 +9,14 @@ class User {
   }
 
   static find() {
-    const { User } = this._context.models;
     const currentUser = this._context.user;
     return USERS
-      .filter(user => user.company === currentUser.company)
-      .map(userData => new User(userData));
+      .filter(({ company }) => company === currentUser.company)
+      .map(({id, company, first_name: firstName, last_name: lastName}) => new this({
+        id,
+        company,
+        firstName,
+        lastName
+      }));
   }
-}
-
-module.exports = () => User;
+};

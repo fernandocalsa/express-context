@@ -1,6 +1,6 @@
 const PROJECTS = require("../data/project");
 
-class Project {
+module.exports = () => class Project {
   constructor({id, name, createdBy, company}) {
     this.id = id;
     this.name = name;
@@ -21,18 +21,17 @@ class Project {
       project.id === parseInt(id) &&
       project.company === companyId
     ));
+    if (!projectData) {
+      return null;
+    }
     return new Project(projectData);
   }
 
   save() {
     const currentUser = this._context.user;
     this.id = new Date().getTime();
-    this.company = currentUser.companyId;
+    this.company = currentUser.company;
     this.createdBy = currentUser.id;
     console.log("project saved");
   }
-};
-
-module.exports = () => {
-  return Project;
 };
